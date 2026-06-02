@@ -1,3 +1,13 @@
+// Determine event date based on current page location
+function getEventDate() {
+    const isOttawa = window.location.pathname.includes('/ottawa');
+    if (isOttawa) {
+        return new Date('2026-06-25T08:30:00').getTime();
+    } else {
+        return new Date('2026-06-15T08:30:00').getTime();
+    }
+}
+
 // Initialize registrations from localStorage
 function getRegistrations() {
     const registrations = localStorage.getItem('eventRegistrations');
@@ -17,7 +27,7 @@ function emailExists(email) {
 
 // Countdown Timer
 function initCountdown() {
-    const eventDate = new Date('2026-06-15T08:30:00').getTime();
+    const eventDate = getEventDate();
     
     function updateCountdown() {
         const now = new Date().getTime();
@@ -145,5 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Made with Bob
 
 // Made with Bob
